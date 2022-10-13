@@ -3,6 +3,7 @@ import Logging from './Logging';
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
+import authorRoutes from './routes/Author';
 const { config } = require('./config/config');
 
 const router = express();
@@ -52,6 +53,8 @@ const StartServer = () => {
 
         next();
     });
+
+    router.use('/authors', authorRoutes);
 
     router.get('/ping', (req: any, res: any, next: any) => {
         res.status(200).json({
